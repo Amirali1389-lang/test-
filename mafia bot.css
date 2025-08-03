@@ -1,0 +1,376 @@
+/* باقی استایل‌های قبلی بدون تغییر */
+* {
+    background-color: #121212;
+}
+body{
+    align-items: center; /* این خط باعث میشه محتوا وسط‌چین بشه */
+
+}
+
+.linetop {
+    background-color: #333333;
+    height: 60px;
+    position: fixed;
+    width: 99%;
+    border-radius: 5px;
+    display: flex;
+    align-items: center; 
+    gap: 10px; 
+    margin-bottom: 1vh;
+}
+.iu{
+    height: 10vh;
+}
+
+.btn {
+    line-height: 1;
+    color: aliceblue;
+    border-radius: 5px;
+    margin: 5px;
+    margin-right: 0; 
+    border: 0;
+    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+#btnstart, 
+#btnDescription, 
+#btnTraining, 
+#btnAboutUs {
+    background-color: #4a4a4a;
+    height: 82%;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: border 0.3s ease;
+}
+
+#btnstart:hover, 
+#btnDescription:hover, 
+#btnTraining:hover, 
+#btnAboutUs:hover {
+    background-color: #595959;
+    border: 2px solid #121212;
+    cursor: pointer;
+}
+
+.linetop input {
+    line-height: 1;
+    background-color: #626262;
+    font-size: large;
+    color: aliceblue;
+    width: 300px;
+    height: 80%;
+    border: none;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.btn-icon {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+}
+
+.btn-image {
+    width: auto;
+    height: 82%; 
+    background-color: #626262; 
+    border-radius: 5px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    flex-grow: 1;
+    margin-right: 6px;
+}
+
+.showrols {
+    background-color: #333333;
+    height: 87.5vh;
+    width: 98.5vw;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;  
+    gap: 10px; 
+    overflow: auto;
+    padding-left: 5px;
+}
+
+#ty{
+    overflow: auto;
+    background-color: #333333;
+    padding-left: 5px;
+    background-color: #333333;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    border-radius: 5px;
+}
+
+.pic{
+    width: 245.3px;
+    top: 0%;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: border 0.3s ease;
+}
+.pic:hover{
+    border-color: aliceblue;
+    cursor: pointer;
+}
+
+.gh{
+    background: none;
+    color: aliceblue;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-left: 10px;
+    font-size: 40px;
+}
+
+#ki{
+    font-size: x-large;
+}
+
+
+/*
+.card-container {
+    perspective: 1000px;
+    width: 245.3px;
+    height: 350px; /* می‌توانید در صورت نیاز ارتفاع را برحسب نسبت تصویر تنظیم کنید 
+    display: inline-block;
+    margin: 5px;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+}
+
+.card-container:hover .card {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    backface-visibility: hidden;
+}
+
+.card-front {
+    /* هیچ تغییر اضافی لازم نیست؛ تصویر داخل آن سبک خود را از کلاس .pic می‌گیرد 
+}
+
+.card-back {
+    background-color: #444;  /* رنگ پشت کارت (با دقت انتخاب شده) 
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotateY(180deg);
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 16px;
+    text-align: center;
+}
+.body{
+    background-color: aqua;
+}*/
+.card-container {
+    perspective: 1000px;
+    width: 245.3px; 
+    height: 350px; 
+    display: inline-block;
+    margin: 5px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px; 
+    font-size: xx-large;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transition: opacity 0.3s ease-in-out; 
+    border-radius: 5px;
+    font-size: xx-large;
+
+}
+
+.card-back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #444; /* رنگ پشت کارت */
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    opacity: 0; /* پشت کارت مخفی باشد */
+    padding: 25px; /* افزایش فاصله متن از دیواره‌ها */
+    box-sizing: border-box; /* شامل padding در ابعاد */
+    border-radius: 5px; /* گوشه‌ها گرد باشند */
+    overflow-wrap: break-word; /* شکستن متن برای جلوگیری از خروج */
+    line-height: 1.5; /* بهبود فاصله خطوط متن */
+    font-size: x-large;
+
+}
+
+.card-container:hover .card-front {
+    opacity: 0; 
+}
+
+.card-container:hover .card-back {
+    opacity: 1;
+}
+#t{
+    cursor: pointer;
+}
+#ty::-webkit-scrollbar {
+    width: 20px; /* یا height برای اسکرول افقی */
+  }
+  
+  #ty::-webkit-scrollbar-track {
+    background:  #333333; /* رنگ زمینه نوار */
+    border-radius: 5px;
+  }
+  
+  #ty::-webkit-scrollbar-thumb {
+    background-color: #555; /* رنگ خود نوار اسکرول */
+    border-radius: 8px;
+    border: 4px solid  #333333; /* برای فاصله داخلی */
+  }
+  @media (max-width: 768px) {
+
+    .iu{
+        display: none;
+    }
+    #btnstart, 
+#btnDescription, 
+#btnTraining, 
+#btnAboutUs{
+    height: 50px;
+}
+    #ty{
+        align-items: center; /* این خط باعث میشه محتوا وسط‌چین بشه */
+
+    }
+    .linetop {
+      flex-wrap: wrap;
+      height: auto;
+      padding: 10px;
+      position: relative;
+      justify-content: center;
+      margin-bottom: 10px;
+      width: 90vw;
+    }
+  
+    .btn,
+    .linetop input {
+      width: 100%;
+      margin: 5px 0;
+      font-size: medium;
+    }
+  
+    .btn-image {
+      display: none; /* تصویر کناری را در موبایل حذف کنیم یا کوچک کنیم */
+    }
+  
+    .showrols {
+      flex-direction: column;
+      height: auto;
+      padding: 10px;
+      width: 90vw;
+    }
+  
+    .gh {
+      font-size: 28px;
+      text-align: center;
+    }
+  
+    
+  
+    #ty::-webkit-scrollbar {
+      width: 10px;
+    }
+  
+    #kkg {
+        height: 50px;
+      width: 100%;
+    }
+    br{
+        display: none;
+    }
+    @media (max-width: 768px) {
+        #ty {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          padding: 10px;
+        }
+        @media (max-width: 768px) {
+            .card-container {
+              width: 87vw;       /* عرض تقریباً کامل صفحه موبایل */
+              height: 450px;     /* ارتفاع بیشتر برای وضوح بهتر */
+              margin: 10px auto;
+              border-radius: 5px;
+              
+            }
+          
+            .card-back {
+              font-size: 30px;
+              padding: 20px;
+            }
+          
+            .card-front img.pic {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              border-radius: 10px;
+            }
+          
+            #ty {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              gap: 15px;
+              padding: 15px;
+            }
+            #u111,#u122,#u133,#u144,#u155{
+                width: 89vw;
+                height: auto;
+            }
+      }
+      
+  }
+  
+  
+}
+@media (max-width: 768px) {
+    #ty {
+      overflow: hidden !important; /* حذف اسکرول */
+      width: 100%;
+      height: auto;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+  
+    /* مخفی کردن نوار اسکرول در مرورگرهای مختلف */
+    #ty::-webkit-scrollbar {
+      display: none;
+    }
+  
+    #ty {
+      -ms-overflow-style: none;  /* IE و Edge */
+      scrollbar-width: none;     /* Firefox */
+    }
+  }
+  

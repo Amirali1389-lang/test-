@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>Belind Night</title>
+  <style>
+    body {
+      background-color: #121212;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    .fg {
+      background-color: #4e4e4e;
+      width: 40%;
+      height: auto;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+
+    h1 {
+      color: aliceblue;
+      font-size: 25px;
+      margin-bottom: 80px;
+      margin-top: 100px;
+    }
+
+    button {
+      background-color: #777;
+      width: 100px;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+      transition:  0.3s;
+    }
+
+    button:hover {
+      background-color: #666;
+    }
+
+    #popup {
+      position: fixed;
+      top: 35%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #242424;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+      z-index: 1000;
+    }
+
+    #popup button {
+      display: block;
+      width: 200px;
+      margin: 5px auto;
+      transition: 0.5s;
+    }
+    #home{
+    width: 100px;
+    height: 50px;
+    background-color: #333333;
+    border-radius: 5px;
+    margin: 5px;
+    color: aliceblue;
+    font-size: large;
+    transition: 0.5s;
+    border: currentColor;
+    margin-bottom: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+}
+#home:hover{
+    background-color: #212121;
+}
+  </style>
+
+</head>
+<body>
+    <button id="home">home</button>
+  <div class="fg">
+    <div class="po" id="po">
+      <h1 id="h1" style="text-align: center;">شروع</h1>
+    </div>
+    <div class="op">
+      <button id="button">Next</button>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("home").onclick = () => {
+    location.href = "../mafi bot.html"
+}
+
+    
+    let ma = 0, sha = 0;
+    let SaidON = null
+
+    const Names = JSON.parse(localStorage.getItem("names") || "[]");
+    const roles = JSON.parse(localStorage.getItem("roles") || "[]")
+    const button = document.getElementById("button");
+    const h1 = document.getElementById("h1");
+    console.log(Names)
+    console.log(roles)
+
+    let sh = 0;
+    let r = 0
+
+    button.onclick = () => {
+    if (roles.includes("نوستراداموس")) {
+    }else{
+        if(r===0){
+            sh=5
+            r++
+        }
+
+    }
+
+      if (sh === 0) {
+            h1.textContent = "نوستراداموس بیدار شود";
+            playSound("../seda/ttsmaker-file-2025-7-1-15-3-45.mp3")
+      }
+      if(sh === 1){
+        h1.textContent = "  سه نفر را انتخاب کند";
+        playSound("../seda/ttsmaker-file-2025-7-1-15-5-49.mp3")
+
+      }
+      if (sh === 2) {
+        const indexToExclude = FIA(roles, "نوستراداموس");
+        const roleToExclude = [Names[indexToExclude]];
+        CFP(Names,3, (NOSselect) => {
+            
+
+            for (let i = 0; i < 3; i++) {
+            const as = NOSselect[i];
+            const role = roles[FIA(Names, as)];
+            if (["پدرخوانده", "ساول گودمن", "ماتادور", "مافیای ساده ۱", "مافیای ساده ۲", "مافیای ساده ۳"].includes(role)) {
+                ma++;
+            } else {
+                sha++;
+            }
+            }
+
+            Popup(ma +" mafiya and "+ sha +" sharvand");
+        }, ...roleToExclude);
+        
+        }
+    if(sh === 3){
+        if(ma=== 1 || ma === 0){
+            h1.textContent = " در چه سایدی بازی می کند";
+            playSound("../seda/ttsmaker-file-2025-7-1-15-8-32.mp3")
+        }else{
+            h1.textContent = "بعدی"
+            Popup(" به دلیل اینکه تعداد مافیا های انتخاب شده از شهروندان انتخاب شده بیشتر است باید نستراداموس در ساید مافیا بازی کند . بدون اینکه کسی متوجه شود به نوستراداموس بگویید در ساید مافیا است اما با مافیا بیدار نشود.")
+            playSound("../seda/ttsmaker-file-2025-7-1-15-8-32.mp3")
+        }
+    }
+
+    if(ma=== 1 || ma === 0){
+        if (sh === 4) {
+            let mfg = ["mafia","shar"]
+            if(ma===1 || ma === 0){
+                CFP(mfg,1,(bh) => {
+                    SaidON = bh
+                    console.log(SaidON)
+                },"")
+                    
+            }
+        }
+    }else{
+        SaidON = "mafia"
+        console.log(SaidON)
+
+    }
+    if (roles.includes("نوستراداموس")){
+    localStorage.JSON.parse(setItem("said on",SaidON))
+    }
+
+    if(sh===5){
+        H1("گروه مافیا از خواب بیدار شوند");
+    }
+    if(sh===6){
+        H1("همدیگر را شناسایی کنند \n پدر خوانده لایک نشان دهد و ماتادور لایک نشان دهد و ");
+    }
+    if(sh===7){
+        if(roles.includes("دکتر")){
+            H1("دکتر بازی لایک نشان شود");
+        }else{
+        sh++
+    }
+    }
+    if(sh===8){
+        if(roles.includes("لئون")){
+            H1("لئون بازی لایک نشان شود");
+        }else{
+        sh++
+    }
+    }
+    if(sh===9){
+        if(roles.includes("همشهری کین")){
+            H1("همشهری کین بازی لایک نشان دهد شود");
+        }else{
+        sh++
+    }
+    }
+    if(sh===10){
+        if(roles.includes("کنستانتین")){
+            H1("کنستانتین بازی لایک نشان دهد شود");
+        }else{
+        sh++
+    }
+    }
+    if(sh===11){
+            H1("شهروندان ساده بازی لایک نشان دهد شود");
+    }
+    if(sh===12){
+        H1("شروع روز معارفه")
+    }
+    if(sh===13){
+        window.location.href = "./blind day.html"
+    }
+    
+
+sh++;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+    function H1 (text) {
+        h1.textContent = text
+    }
+
+    function FIA(arr, value) {
+      return Array.isArray(arr) ? arr.indexOf(value) : -1;
+    }
+
+    function CFP(array, maxSelect, callback, ...excludedItems) {
+        const overlay = document.createElement("div");
+overlay.id = "overlay";
+Object.assign(overlay.style, {
+  position: "fixed",
+  top: "0",
+  left: "0",
+  width: "100vw",
+  height: "100vh",
+  backgroundColor: "rgba(0, 0, 0, 0.5)",
+  zIndex: "9998"
+});
+
+  if (!Array.isArray(array)) {
+    console.warn("ورودی معتبر نیست:", array);
+    return;
+  }
+
+  const filtered = array.filter(item => !excludedItems.includes(item));
+  const popup = document.createElement("div");
+  popup.id = "popup";
+
+  const selected = [];
+
+  filtered.forEach(item => {
+    const btn = document.createElement("button");
+    btn.style.backgroundColor = "#555555";
+    btn.textContent = item;
+
+    btn.onclick = () => {
+      const idx = selected.indexOf(item);
+
+      if (idx === -1 && selected.length < maxSelect) {
+        selected.push(item);
+        btn.textContent = "✔ " + item;
+        btn.style.backgroundColor = "#999999";
+        btn.style.width = "210px";
+      } else if (idx !== -1) {
+        selected.splice(idx, 1);
+        btn.textContent = item;
+        btn.style.backgroundColor = "#555555";
+        btn.style.width = "200px";
+      }
+    };
+
+    popup.appendChild(btn);
+  });
+
+  const confirmBtn = document.createElement("button");
+  confirmBtn.textContent = "✔️ تایید انتخاب‌ها";
+  confirmBtn.style.marginTop = "10px";
+  confirmBtn.style.backgroundColor = "#4a4a4a";
+
+  confirmBtn.onclick = () => {
+    if (selected.length === maxSelect) {
+      document.body.removeChild(popup);
+      callback(selected);
+      document.body.removeChild(overlay);
+    } else {
+      Popup(`باید دقیقاً ${maxSelect} نفر انتخاب کنید.`);
+    }
+  };
+
+  const cancelBtn = document.createElement("button");
+  cancelBtn.textContent = "❌ انصراف";
+  cancelBtn.onclick = () => {
+    document.body.removeChild(popup);
+  };
+  document.body.appendChild(overlay);
+
+  popup.appendChild(confirmBtn);
+  document.body.appendChild(popup);
+  
+}
+
+
+function Popup(message) {
+        // ایجاد پوشش کدر برای پس‌زمینه
+        const overlay = document.createElement('div');
+        overlay.id = 'f'
+        overlay.style.position = 'fixed';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100%';
+        overlay.style.height = '100%';
+        overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)'; // شدت کدری
+        overlay.style.display = 'flex';
+        overlay.style.justifyContent = 'center';
+        overlay.style.alignItems = 'center';
+        overlay.style.zIndex = '1000';
+      
+        // ایجاد پاپ‌آپ
+        const popup = document.createElement('div');
+        popup.style.position = 'relative';
+        popup.style.backgroundColor = '#333333'; // رنگ پس‌زمینه پاپ‌آپ
+        popup.style.padding = '20px';
+        popup.style.borderRadius = '10px';
+        popup.style.textAlign = 'center';
+        popup.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+        popup.style.margin = '0px 200px 0px 200px';
+        popup.style.minWidth = "80px"
+      
+        // افزودن پیام
+        const messageText = document.createElement('h1');
+        messageText.textContent = message;
+        messageText.style.margin = '0 0 50px'; // افزایش فاصله به 30px
+        messageText.style.padding = '10px';
+        messageText.style.color = 'white'; // متن سفید
+        messageText.style.fontSize = '18px';
+        messageText.style.borderRadius = '10px'; // گوشه‌های گرد برای متن
+        messageText.style.backgroundColor = '#4a4a4a'; // رنگ پس‌زمینه برای متن
+        popup.appendChild(messageText);
+      
+        // ایجاد دکمه "OK"
+        const okButton = document.createElement('button');
+        okButton.textContent = 'OK';
+        okButton.style.padding = '10px 20px';
+        okButton.style.fontSize = '16px';
+        okButton.style.cursor = 'pointer';
+        okButton.style.backgroundColor = '#4a4a4a'; // رنگ دکمه
+        okButton.style.color = 'white';
+        okButton.style.border = 'none';
+        okButton.style.borderRadius = '5px';
+        okButton.style.position = 'absolute';
+        okButton.style.bottom = '10px'; // فاصله از پایین پاپ‌آپ
+        okButton.style.right = '10px'; // فاصله از سمت راست پاپ‌آپ
+        okButton.onclick = function () {
+          document.body.removeChild(overlay);
+          
+        };
+    
+      
+        // افزودن دکمه و پیام به پاپ‌آپ
+        popup.appendChild(okButton);
+        overlay.appendChild(popup);
+      
+        // افزودن پوشش به بدنه
+        document.body.appendChild(overlay);
+      }
+      // جلوگیری از زوم لمسی و حرکات چند انگشتی
+    document.addEventListener("wheel", function(event) {
+        if (event.ctrlKey) {
+            event.preventDefault(); // جلوگیری از زوم با چرخ ماوس و کلید Ctrl
+        }
+    }, { passive: false });
+    document.addEventListener("touchstart", function(event) {
+        if (event.touches.length > 1) {
+            event.preventDefault(); // جلوگیری از زوم با چند انگشت
+        }
+    }, { passive: false });
+    function playSound(filePath) {
+  const audio = new Audio(filePath);
+  audio.play().catch(e => console.warn("پخش صدا با خطا مواجه شد:", e));
+}
+
+
+
+
+
+
+
+function showFinalPersianLoader(duration = 10000) {
+  // اضافه کردن فونت فارسی
+  if (!document.getElementById("vazir-font")) {
+    const font = document.createElement("link");
+    font.id = "vazir-font";
+    font.href = "https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap";
+    font.rel = "stylesheet";
+    document.head.appendChild(font);
+  }
+
+  // استایل shine
+  if (!document.getElementById("loader-style")) {
+    const style = document.createElement("style");
+    style.id = "loader-style";
+    style.textContent = `
+      @keyframes shine {
+        0% { left: -40%; }
+        100% { left: 100%; }
+      }`;
+    document.head.appendChild(style);
+  }
+
+  // ⏹️ ساختار DOM
+  const wrapper = document.createElement("div");
+  Object.assign(wrapper.style, {
+    position: "fixed", top: "50%", left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "320px", padding: "20px",
+    backgroundColor: "#181818", color: "#ccc",
+    fontFamily: "'Vazirmatn', sans-serif",
+    textAlign: "center", borderRadius: "10px",
+    zIndex: "9999", boxShadow: "0 0 10px rgba(0,0,0,0.4)"
+  });
+
+  const barContainer = document.createElement("div");
+  Object.assign(barContainer.style, {
+    width: "100%", height: "20px",
+    backgroundColor: "#2a2a2a",
+    borderRadius: "10px", border: "1px solid #444",
+    overflow: "hidden", marginBottom: "12px",
+    position: "relative"
+  });
+
+  const progressBar = document.createElement("div");
+  Object.assign(progressBar.style, {
+    height: "100%", width: "0%",
+    background: "linear-gradient(90deg, #aaa, #ddd)",
+    borderRadius: "10px 0 0 10px",
+    transition: "width 0.6s ease-in-out",
+    position: "absolute", left: "0", top: "0"
+  });
+
+  const shine = document.createElement("div");
+  Object.assign(shine.style, {
+    position: "absolute", top: "0", left: "-40%",
+    width: "40%", height: "100%",
+    background: "linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent)",
+    transform: "skewX(-20deg)",
+    animation: "shine 2s linear infinite",
+    pointerEvents: "none"
+  });
+
+  const percent = document.createElement("div");
+  Object.assign(percent.style, {
+    position: "absolute", top: "0", left: "50%",
+    transform: "translateX(-50%)",
+    height: "100%", lineHeight: "20px",
+    color: "#fff", fontSize: "14px", fontWeight: "bold"
+  });
+
+  const tag = document.createElement("div");
+  Object.assign(tag.style, {
+    fontSize: "14px", minHeight: "24px",
+    marginTop: "10px", opacity: "1",
+    transition: "opacity 0.6s ease-in-out"
+  });
+
+  const tags = [
+    "در حال بارگذاری صداها...  ~run('HTML>CSS>JS')",
+    "در حال راه‌اندازی تنظیمات...  ::init <(`~89~css.kl,!uiu`)>",
+    "در حال تنظیم روز و شب...  ##renderer : display;",
+    "در حال دریافت پیکربندی...  config:;:load-*-()",
+    "در حال لود مدل‌ها...  >>_assets_<<",
+    "در حال اجرای اسکرسپت ها و ...  &->{./page/Day.js -> **}.lol.scripts",
+    "در حال اتصال به درگاه متنی...  db.connect('https//:font.mag.com')",
+    "در حال فعال‌سازی و آماده سازی برنامه...  physics.start",
+    "در حال شروع روز ...  ~> DAY --> 1 ONE"
+  ];
+
+  const tagDelays = [];
+  const rawWeights = [0.5, 0.6, 1.2, 0.8, 0.9, 0.4, 1.4, 0.6, 0.9, 1.1];
+  const sum = rawWeights.reduce((a,b) => a + b);
+  for (const w of rawWeights) tagDelays.push((w / sum) * duration);
+
+  barContainer.appendChild(progressBar);
+  barContainer.appendChild(shine);
+  barContainer.appendChild(percent);
+  wrapper.appendChild(barContainer);
+  wrapper.appendChild(tag);
+  document.body.appendChild(wrapper);
+
+  // 🌀 تگ‌ها با افکت fade
+  let tagIndex = 0;
+  tag.textContent = tags[0];
+  function nextTag() {
+    tag.style.opacity = "0";
+    setTimeout(() => {
+      tagIndex++;
+      if (tagIndex < tags.length) {
+        tag.textContent = tags[tagIndex];
+        tag.style.opacity = "1";
+        setTimeout(nextTag, tagDelays[tagIndex]);
+      }
+    }, 400);
+  }
+  setTimeout(nextTag, tagDelays[0]);
+
+  // ⏳ انیمیشن پیشرفت با ایست‌های طبیعی
+  const start = performance.now();
+  let smoothProgress = 0;
+
+function animate(t) {
+  const elapsed = t - start;
+  const raw = elapsed / duration;
+  const eased = Math.min(raw + 0.045 * Math.sin(raw * 24 + 1.3), 1);
+
+  // نرم‌سازی هماهنگ درصد
+  smoothProgress += (eased - smoothProgress) * 0.15;
+
+  const pct = Math.floor(smoothProgress * 100);
+  progressBar.style.width = `${pct}%`;
+  percent.textContent = `${pct}%`;
+
+  if (smoothProgress < 0.999) {
+    requestAnimationFrame(animate);
+  } else {
+    percent.textContent = `100%`;
+    progressBar.style.width = `100%`;
+    wrapper.style.transition = "opacity 0.5s ease";
+    wrapper.style.opacity = "0";
+    setTimeout(() => wrapper.remove(), 600);
+  }
+}
+
+  requestAnimationFrame(animate);
+}
+  </script>
+</body>
+</html>
+
+

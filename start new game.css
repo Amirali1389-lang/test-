@@ -1,0 +1,292 @@
+body {
+    background-color: #121212;
+}
+
+.linetop {
+    background-color: #333333;
+    height: 60px;
+    width: 98%;
+    border-radius: 5px;
+    position: fixed;
+    display: flex;
+    align-items: center; /* تنظیم مرکزی عمودی محتوا */
+    gap: 10px; /* فاصله بین عناصر */
+}
+.namyesh{
+    background-color:#444;
+    color: aliceblue;
+    border-radius: 5px;
+    height: auto;
+    padding: 5px;
+    padding-left: 5px;
+    width: 99%;
+    padding-top: 0.1px;
+}
+
+h1{
+    margin: 0;
+    padding: 10px;
+    background-color: #555;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+.btn{
+    line-height: 1;
+    color: aliceblue;
+    border-radius: 5px;
+    margin: 5px;
+    margin-right: 0; /* حذف فاصله */
+    border: 0;
+    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+#btnstart, 
+#btnDescription, 
+#btnTraining, 
+#btnAboutUs,
+#saveRoles {
+    background-color: #4a4a4a;
+    width: 99%;
+    height: 50px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: border 0.3s ease;
+    margin-top: 10px;
+}
+#saveRoles{
+    margin-left: 0;
+    height: 50px;
+    width: 99.5%;
+    font-size: x-large;
+}
+.showrols {
+    margin-top: 2.5vh;
+    background-color: #333333;
+    height: 95vh;
+    width: 99.65%;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;  
+    gap: 10px; 
+    overflow: auto;
+    padding-left: 5px;
+}
+
+#ty{
+    overflow: auto;
+    background-color: #333333;
+    border-radius: 5px;
+    padding-left: 5px;
+    background-color: #333333;
+    width: 100%;
+    height: 95vh;
+    padding: 0px;
+}
+
+#btnstart:hover, 
+#btnDescription:hover, 
+#btnTraining:hover, 
+#btnAboutUs:hover,
+#saveRoles:hover {
+    background-color: #595959;
+    border: 2px solid #121212;
+    cursor: pointer;
+}
+
+.linetop input {
+    line-height: 1;
+    background-color: #626262;
+    font-size: large;
+    color: aliceblue;
+    width: 300px;
+    height: 80%;
+    border: none;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.btn-icon {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+}
+
+.btn-image {
+    width: auto;
+    height: 80%; /* مشابه ورودی */
+    background-color: #626262; /* رنگ مشابه ورودی */
+    border-radius: 5px; /* گوشه‌های گرد مشابه ورودی */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* سایه جذاب */
+    flex-grow: 1;
+    margin-right: 6px;
+    object-fit: cover;
+}
+#t{
+    cursor: pointer;
+}
+/* دکمه‌ها و تعداد نقش‌ها */
+.role-controls {
+    color: aliceblue;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    justify-content: center;
+}
+
+#roleCount {
+    color: aliceblue;
+    font-size: large;
+    font-weight: bold;
+}
+
+/* استایل ورودی نقش‌ها */
+.role-input {
+    color: aliceblue;
+
+    display: block; /* برای نمایش زیر هم */
+    margin: 5px auto;
+    padding: 10px;
+    width: 90%;
+    background-color: #444;
+    color: aliceblue;
+    border: 1px solid #555;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+.role-item {
+    color: aliceblue;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #444;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+.role-toggle {
+    color: aliceblue;
+
+    width: 40px;
+    height: 40px;
+    background-color: #4a4a4a;
+    color: white;
+    border-radius: 5px;
+    font-size: large;
+    text-align: center;
+    line-height: 40px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+.role-toggle:hover {
+    color: aliceblue;
+
+    background-color: #595959;
+    border: 2px solid #121212;
+}
+
+
+.role-controls {
+    color: aliceblue;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+#roleCount {
+    color: aliceblue;
+    font-size: large;
+    font-weight: bold;
+}
+
+#roleList {
+    color: aliceblue;
+    background-color: #333333;
+    width: 99.5%;
+
+    margin-top: 20px;
+}
+
+.role-input {
+    margin: 5px 0;
+    padding: 10px;
+    width: 100%;
+    background-color: #444;
+    color: aliceblue;
+    border: 1px solid #555;
+    border-radius: 5px;
+}
+.showrols h2{
+    color: aliceblue;
+    background-color: #333333;
+}
+.role-controls button{
+    color: aliceblue;
+
+    width: 40px;
+    height: 40px;
+    background-color: #4a4a4a;
+    color: white;
+    border-radius: 5px;
+    font-size: large;
+    text-align: center;
+    line-height: 40px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border 0.3s ease;
+}
+.role-controls button:hover{
+    color: aliceblue;
+
+    background-color: #595959;
+    border: 2px solid #121212;
+}
+.role-controls {
+    background-color: #333333;
+}
+.role-controls span {
+    background-color: #333333;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: large;
+}
+#rolesSelection{
+    background-color: #333333;
+    width: 99.5%;
+
+}
+/* روی دیو خاص مثلاً #ty */
+#ty::-webkit-scrollbar {
+    width: 20px; /* یا height برای اسکرول افقی */
+  }
+  
+  #ty::-webkit-scrollbar-track {
+    background-color: #333333;
+    border-radius: 5px;
+  }
+  
+  #ty::-webkit-scrollbar-thumb {
+    background-color: #555; /* رنگ خود نوار اسکرول */
+    border-radius: 8px;
+    border: 4px solid  #333333; /* برای فاصله داخلی */
+  }
+  @media (max-width: 996px){
+    .namyesh{
+        width: 96.5%;
+    }
+    #btnstart{
+        width: 98%;
+    }
+}
+
+  

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    let a =["y","y","u","t"]
+    let s=[1,2,3,4,5,6,7,8,9]
+    FMV(a,s,"y")
+    function FMV(arr1, arr2, target) {
+  const index = arr1.indexOf(target);
+
+  if (index === -1) {
+    console.warn("[⚠️ NotFoundError] مقدار موردنظر در آرایه اول یافت نشد:", target);
+    return null;
+  }
+
+  if (index >= arr2.length) {
+    console.warn(`[⚠️ OutOfRangeError] مقدار "${target}" در ایندکس ${index} پیدا شد، اما آرایه دوم در این ایندکس مقداری ندارد.`);
+    return null;
+  }
+
+  console.dir(`[✅ Info] مقدار "${target}" در ایندکس ${index} یافت شد. مقدار معادل در آرایه دوم:`, arr2[index]);
+
+  return {
+    index,
+    mappedValue: arr2[index]
+  };
+}
+
+</script>
+همه این هارا ول کن فانگشنی بساز که که 
+timer("ty",sec =>{
+    //کاری که باید ها ثانیه انجام شود
+},40,50,70 () =>{
+    //وقتی تایمر تمام میشود هر 0.2 ثانیه تکرار کند تا timer.end()را دریافت کند
+});

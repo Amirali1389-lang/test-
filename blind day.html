@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <title>blind day</title>
+  <style>
+    body {
+      background: #1a1a1a;
+      color: #fff;
+      font-family: 'Tahoma', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+    }
+    .btn {
+      background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+      border: 1px solid #333;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.2s ease;
+    }
+    .btn:hover {
+      background: #333;
+    }
+    #btnm{
+      position: fixed;
+      background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+      color: #fff;
+      border-radius: 5px;
+      border: 1px solid #333;
+      right: 0;
+      top: 0;
+      
+      margin: 10px;
+      cursor: pointer;
+
+      transition: all 0.2s ease;
+      background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+      border: 1px solid #333;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.2s ease;
+      
+    }
+    #btnm:hover{
+      background: #4e4e4e;
+
+    }
+  </style>
+</head>
+<body>
+  <button id="btnm">Next</button>
+  <div id="main"></div>
+  <script>
+    
+    function createSmartTimer({
+      containerId,
+      durations = [],
+      onTick = () => {},
+      onEnd = () => {}
+    }) {
+      const container = document.getElementById(containerId);
+      if (!container) return console.warn("❗ کانتینر یافت نشد:", containerId);
+
+      const display = document.createElement("div");
+      display.id = "display";
+      display.textContent = "--";
+      display.style.cssText = `
+        background: black;
+        color: lime;
+        font-family: 'Courier New', monospace;
+        font-size: 60px;
+        padding: 20px 40px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        min-width: 160px;
+        text-align: center;
+      `
+      container.appendChild(display);
+
+      const btnContainer = document.createElement("div");
+      btnContainer.style.cssText = "display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px;";
+      container.appendChild(btnContainer);
+
+      const controlContainer = document.createElement("div");
+      controlContainer.style.cssText = "display: flex; justify-content: center; margin-top: 10px;";
+      container.appendChild(controlContainer);
+
+      let remaining = 0;
+      let interval = null;
+      let paused = false;
+
+      const updateDisplay = () => {
+        display.textContent = remaining > 0 ? String(remaining).padStart(2, "0") : "--";
+      };
+
+      const tick = () => {
+        if (!paused && remaining > 0) {
+          remaining--;
+          updateDisplay();
+          onTick(remaining);
+          if (remaining === 0) {
+            clearInterval(interval);
+            onEnd();
+          }
+        }
+      };
+
+      const api = {
+        pause: () => {
+          paused = true;
+          toggleBtn.textContent = "▶️ ادامه";
+        },
+        resume: () => {
+          paused = false;
+          toggleBtn.textContent = "⏸ توقف";
+        },
+        toggle: () => {
+          paused = !paused;
+          toggleBtn.textContent = paused ? "▶️ ادامه" : "⏸ توقف";
+        },
+        end: () => {
+          clearInterval(interval);
+          display.textContent = "⛔️";
+        },
+        start: (time) => {
+          clearInterval(interval);
+          remaining = time;
+          paused = false;
+          updateDisplay();
+          toggleBtn.textContent = "⏸ توقف";
+          interval = setInterval(tick, 1000);
+        }
+      };
+
+      durations.forEach(time => {
+        const btn = document.createElement("button");
+        btn.className = "btn";
+        btn.textContent = time + " ثانیه";
+        btn.onclick = () => api.start(time);
+        btnContainer.appendChild(btn);
+      });
+
+      const toggleBtn = document.createElement("button");
+      toggleBtn.className = "btn";
+      toggleBtn.textContent = "⏸ توقف";
+      toggleBtn.onclick = api.toggle;
+      controlContainer.appendChild(toggleBtn);
+
+      return api;
+    }
+
+    // ✨ استفاده:
+    const myTimer = createSmartTimer({
+      containerId: "main",
+      durations: [40, 50, 60, 70, 80],
+      onTick: (s) => console.log("⏳ مانده:", s),
+      onEnd: () =>{ 
+                    console.log("🏁 تایمر تمام شد!")
+
+                  }
+    });
+
+    // می‌تونی هر زمان بخوای دستی پایان بدی با:
+    // myTimer.end();
+  </script>
+</body>
+</html>
